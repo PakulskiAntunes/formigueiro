@@ -29,7 +29,7 @@ public class App {
                     System.out.print(" | "+campo[i][j]);
                 }
             }
-            System.out.println(" |-");
+            System.out.println(" |");
         }
     }
 }
