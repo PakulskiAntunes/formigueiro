@@ -1,7 +1,13 @@
+import java.util.ArrayList;
 import java.util.Random;
+import reservatorio.Reservatorio;
 
 public class App {
     public static void main(String[] args) {
+        // iniciação de teclado
+        ArrayList<Reservatorio> reserv=new ArrayList<Reservatorio>();
+
+
         // criação da matriz do campo de execução
         String[][] campo = new String[15][20];
         //posição de linhas e colunas aleatoria para inserção do reservatorio de alimentos
@@ -19,7 +25,11 @@ public class App {
             if (aleatorLin[i] == 8 && aleatorCol[i] == 10) {
                 i--;
             } else {
-                campo[aleatorLin[i]][aleatorCol[i]] = "R";
+                // cria o reservatorio cada um com sua capacidade
+                Reservatorio r = new Reservatorio();
+                reserv.add(r);
+
+                campo[aleatorLin[i]][aleatorCol[i]] = reserv.get(i).getReserva();
                 // após realizar o posicionamento dos reservatorios é colocado obstaculos ao redor 
                 // para que as formigas realizem o desvio
                 if ((campo[aleatorLin[i] + 1][aleatorCol[i]]) == null) {
@@ -40,7 +50,7 @@ public class App {
             for (int j = 0; j < 20; j++) {
                 if (campo[i][j] == null) {
                     campo[i][j] = " ";
-                    System.out.print(" |"+campo[i][j]);
+                    System.out.print(" |" + campo[i][j]);
                 } else {
                     System.out.print(" |"+campo[i][j]);
                 }

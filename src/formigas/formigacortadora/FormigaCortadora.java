@@ -2,18 +2,12 @@ package formigas.formigacortadora;
 
 public class FormigaCortadora {
     public String tipoFormi;
-    public int idFormi;
 
-    public FormigaCortadora(String tipoFormi, int idFormi) {
-        this.tipoFormi = tipoFormi;
-        this.idFormi = idFormi;
+    public FormigaCortadora() {
+        this.tipoFormi = "Fc";
     }
 
     public String getTipo() {
         return tipoFormi;
-    }
-    public int idFormi() {
-        return idFormi;
-    }
-    
+    }    
 }
