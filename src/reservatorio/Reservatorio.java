@@ -26,4 +26,8 @@ public class Reservatorio {
     public void setCapac(int capaci) {
         capacidade -= capaci;
     }
+
+    public String toString() {
+        return "Formigueiro está com " + capacidade + " de Alimentos";
+    }
 }
