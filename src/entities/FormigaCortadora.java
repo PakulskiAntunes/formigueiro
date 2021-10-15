@@ -1,4 +1,4 @@
-package formigas.formigacortadora;
+package entities;
 
 public class FormigaCortadora {
     public String tipoFormi;

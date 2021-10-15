@@ -1,21 +1,35 @@
-package formigueiro;
+package entities;
 
 public class Formigueiro {
-    public String formigueiro;
     public int capacidade;
     public int capacidadeMax;
+    public int posX = 0;
+    public int posY = 0;
+    public Campo campo;
     
-    public Formigueiro() {
-        this.formigueiro = "F";
+    public Formigueiro(Campo campo) {
+        this.campo = campo;
+        posX = campo.getLinhas() / 2;
+        posY = campo.getColunas() / 2;
+        campo.campo[posX][posY] = campo.formigueiro;
         this.capacidade = 0;
         this.capacidadeMax = 200;
     }
-    
-    public String getFormigueiro() {
-        return formigueiro;
+
+    public void center() {
+        campo.campo[posX][posY] = campo.formigueiro;        
     }
-    public int getCapacidade(){
+
+    public int getCapacidade() {
         return capacidade;
+    }
+
+    public int getPosX() {
+        return posX;
+    }
+
+    public int getPosY() {
+        return posY;
     }
 
     public int getCapcMax() {
