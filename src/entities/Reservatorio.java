@@ -19,6 +19,7 @@ public class Reservatorio {
         this.campo = campo;
         this.nome = campo.reservatorio;
     }
+
     public void sortearReserva(Campo campo) {
         for (int x = 0; x < quantReservas; x++) {
             Random random = new Random();
@@ -30,6 +31,10 @@ public class Reservatorio {
                 x--;
             }
         }
+    }
+
+    public int getQuantReserva() {
+        return quantReservas;
     }
     public int getCapac() {
         return capacidade;

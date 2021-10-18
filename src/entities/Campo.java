@@ -1,9 +1,11 @@
 package entities;
 
+import java.util.ArrayList;
+
 public class Campo {
 
-    private int linhas = 6;
-    private int colunas = 8;
+    private int linhas = 15;
+    private int colunas = 20;
     public int campo[][] = new int[linhas][colunas];
     public int vazio = 1;
     public int formigueiro = 2;
@@ -23,6 +25,9 @@ public class Campo {
     public int formigueiroCortadora = 16;
     public int formigueiroTransportadora = 17;
 
+    ArrayList<Integer> positionX=new ArrayList<Integer>();
+    ArrayList<Integer> positionY=new ArrayList<Integer>();
+
     public Campo() {
         for (int i = 0; i < linhas; i++) {
             for (int j = 0; j < colunas; j++) {
@@ -41,6 +46,16 @@ public class Campo {
 
     public void defineCell(int i, int j, int valor) {
         this.campo[i][j] = valor;
+        positionX.add(i);
+        positionY.add(j);
+    }
+
+    public int getListaPosX(int i) {
+        return positionX.get(i);
+    }
+
+    public int getListaPosY(int i) {
+        return positionY.get(i);
     }
 
     public int getLinhas() {
@@ -52,8 +67,8 @@ public class Campo {
     }
 
     public String imprimeCampo() {
-        String legenda = "R = Reservatorio | - = Obstaculo | F = Formigueiro | # = Caminho " +
-                "| Y = Formiga Rastreadora | W = Formiga Cortadora | \nT = Formiga transportadora | A = Alimento | R V = Reservatorio sem estoque\n";
+        String legenda = "\n\nR = Reservatorio | - = Obstaculo | F = Formigueiro | # = Caminho " +
+                "| Y = Formiga Rastreadora | W = Formiga Cortadora | \nT = Formiga transportadora | A = Alimento | R V = Reservatorio sem estoque\n\n";
         String textReturn = "";
         for (int i = 0; i < linhas; i++) {
             textReturn += "|";
