@@ -2,8 +2,8 @@ package entities;
 
 public class Campo {
 
-    private int linhas = 15;
-    private int colunas = 20;
+    private int linhas = 6;
+    private int colunas = 8;
     public int campo[][] = new int[linhas][colunas];
     public int vazio = 1;
     public int formigueiro = 2;
@@ -19,6 +19,9 @@ public class Campo {
     public int formigaTransportadoraEAlimento = 12;
     public int formigaCortadoraEAlimento = 13;
     public int reservatorioSemEstoque = 14;
+    public int formigueiroRastreadora = 15;
+    public int formigueiroCortadora = 16;
+    public int formigueiroTransportadora = 17;
 
     public Campo() {
         for (int i = 0; i < linhas; i++) {
@@ -95,8 +98,14 @@ public class Campo {
                     case 13: //Formiga cortadora e alimento
                         textReturn += "   W A  ";
                         break;
-                    case 14: //Formiga cortadora e alimento
-                        textReturn += "  R V   ";
+                    case 14: //Formigueiro e Rastreadora
+                        textReturn += "  F Y   ";
+                        break;
+                    case 15: //Formigueiro e Cortadora
+                        textReturn += "  F W   ";
+                        break;
+                    case 16: //Formigueiro e Transportadora
+                        textReturn += "  F T   ";
                         break;
                 }
                 textReturn += "|";
@@ -104,7 +113,5 @@ public class Campo {
             textReturn += "\n";
         }
         return legenda + textReturn;
-    }
-    
-    
+    }  
 }
