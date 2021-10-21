@@ -44,6 +44,10 @@ public class Campo {
         }
     }
 
+    public int verificaStatus(int i, int j) {
+        return campo[i][j];
+    }
+
     public void defineCell(int i, int j, int valor) {
         this.campo[i][j] = valor;
         positionX.add(i);

@@ -14,8 +14,6 @@ public class App {
         reservatorio.sortearReserva(campo);
         
         System.out.println(campo.imprimeCampo());
-        
-
 
     }
 }

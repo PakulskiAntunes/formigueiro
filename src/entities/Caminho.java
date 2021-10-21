@@ -18,33 +18,106 @@ public class Caminho {
         this.posAntY = formigueiro.posY;
     }
 
-    public void reservaProxima() {
-        int posX;
-        int posY;
-        int menorX;
-        int menorY;
-        int menorPX= menorPX = campo.getListaPosX(1) - formigueiro.posX;
-        int menorPY=0;
+    public void caminhaForm(int enderecoX, int enderecoY, int Formiga) {
+        int fim = 0;
+        boolean sobiOuDesce = false;
+        int counter = 0;
 
-        for (int x = 0; x < campo.positionX.size(); x++) {
-            for (int y = 0; y < campo.positionY.size(); y++) {
-                menorX = campo.getListaPosX(x) - formigueiro.posX;
-                menorY = campo.getListaPosY(y) - formigueiro.posY;
-                if (campo.getListaPosX(x + 1) <= campo.positionX.size()) {
-                    menorPX = campo.getListaPosX(x + 1) - formigueiro.posX;
-                    menorPY = campo.getListaPosY(y + 1) - formigueiro.posY;
-                }
-                if (menorX < 0) {
-                    if (menorY < 0) {
-                        if (menorX <= menorPX) {
-                            if (menorY <= menorPY) {
-                                posX = campo.getListaPosX(x);
-                                posY = campo.getListaPosY(y);
-                            }                            
-                        }
-                    }
-                }
+        do {
+            System.out.println("Counter: " + counter + " | Atual (" + posAtualX + "," + posAtualY + ") | Destino ("
+                    + enderecoX + "," + enderecoY + ")" + " | Anterior (" + posAntX + "," + posAntY + ")");
+            if (!sobiOuDesce) {
+
             }
+        } while (fim == 0);
+
+    }
+    
+    public boolean precisaSubir(int destinoX) {
+        return posAtualX > destinoX;
+    }
+
+    public boolean precisaDescer(int destinoX) {
+        return posAtualX < destinoX;
+    }
+
+    public boolean precisaDireita(int destinoY) {
+        return posAtualY < destinoY;
+    }
+
+    public boolean precisaEsquerda(int destinoY) {
+        return posAtualY > destinoY;
+    }
+
+    public int sobe(int posAtualX, int posAtualY, int qualFormiga) {
+        if (posAtualX - 1 >= 0) {
+            if (campo.verificaCelula(posAtualX - 1, posAtualY)) {
+                this.posAntX = posAtualX;
+                this.posAntY = posAtualY;
+                this.posAtualX = posAtualX - 1;
+                campo.campo[this.posAtualX][posAtualY] = qualFormiga;
+                return -1;
+            }
+            return campo.verificaStatus(posAtualX - 1, posAtualY);
+        }
+        return 0;
+    }
+
+    public int desce(int posAtualX, int posAtualY, int qualFormiga) {
+        if (posAtualX + 1 < campo.getLinhas()) {
+            if (campo.verificaCelula(posAtualX + 1, posAtualY)) {
+                this.posAntX = posAtualX;
+                this.posAntY = posAtualY;
+                this.posAtualX = posAtualX + 1;
+                if (campo.verificaStatus(posAntX, posAtualY) != campo.formigueiro) {
+                    campo.campo[posAntX][posAntY] = campo.caminho;
+                }
+                campo.campo[this.posAtualX][posAtualY] = qualFormiga;
+                return -1;
+            }
+            return campo.verificaStatus(posAtualX + 1, posAtualY);
+        }
+        return 0;
+    }
+
+    public int direita(int posAtualX, int posAtualY, int qualFormiga) {
+        if (posAtualY + 1 < campo.getLinhas()) {
+            if (campo.verificaCelula(posAtualX, posAtualY + 1)) {
+                this.posAntX = posAtualX;
+                this.posAntY = posAtualY;
+                this.posAtualY = posAtualY + 1;
+                if (campo.verificaStatus(posAntX, posAntY) == qualFormiga) {
+                    campo.campo[posAntX][posAntY] = campo.caminho;
+                }
+                campo.campo[posAtualX][this.posAntY] = qualFormiga;
+                return -1;
+            }
+            this.posAtualY = posAtualY + 1;
+            return campo.verificaStatus(posAtualX, posAtualY + 1);
+        }
+        return 0;
+    }
+
+    public int esquerda(int posAtualX, int posAtualY, int qualFormiga) {
+        if (posAtualY - 1 >= 0) {
+            if (campo.verificaCelula(posAtualX, posAtualY - 1)) {
+                this.posAntX = posAtualX;
+                this.posAntY = posAtualY;
+                this.posAtualY = posAtualY - 1;
+                campo.campo[posAtualX][this.posAtualY] = qualFormiga;
+                return -1;
+            }
+            this.posAtualY = posAtualY - 1;
+            return campo.verificaStatus(posAtualX, posAtualY - 1);
+        }
+        return 0;
+    }
+    
+    public void rastro(){
+        boolean naoOcupaFormigueiro = !(formigueiro.posX == this.posAntX) & !(formigueiro.posY == this.posAntX);
+        if (naoOcupaFormigueiro) {
+            campo.campo[this.posAntX][this.posAntY] = campo.caminho;            
         }
     }
+        
 }
